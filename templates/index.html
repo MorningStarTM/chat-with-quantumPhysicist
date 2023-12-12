@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha384-rNSKCEQN4SQGqJTuaIj6O7PpbMUHR3dtMAd83Ob5CDDdGKg5KfoDnDO9j5Nk3ijq" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Chat with Quantum Physicist</title>
+
+</head>
+<body>
+    <h1><center>Chat with Quantum Physicist</center></h1>
+    <div class="question-box">
+        <input type="text" id="question" placeholder="Ask a question...">
+        <button id="submit-button" onclick="processAnswer()">➔</button>
+    </div>
+    <div class="container">
+        <div class="chat-box" id="chat-box">
+            <!-- User and model chat messages will be displayed here -->
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

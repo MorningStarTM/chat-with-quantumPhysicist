@@ -1,0 +1,86 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: auto;
+    margin: 50px auto;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: row;
+    height: 450px; /* Set a fixed height for the container */
+    position: relative;
+}
+
+.chat-box {
+    flex: 2;
+    overflow-y: auto; /* Make the chat box scrollable */
+}
+
+.question-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+input {
+    flex: 1;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #444;
+    color: #ffffff;
+    border: 2px solid #ff6600;
+    outline: none;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #ff6600;
+    color: #000000;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.user-message {
+    color: #ede2e2;
+    font-size: 18px;
+}
+
+.model-message::before {
+    content: '';
+    background-image: url('https://en.pimg.jp/104/519/612/1/104519612.jpg'); /* Update the path accordingly */
+    background-color: rgb(13, 16, 19);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30px; /* Adjust the width of the image */
+    height: 30px; /* Adjust the height of the image */
+    display: inline-block;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+
+.model-message {
+    color: #ebdfdf;
+    text-align: left;
+    font-size: 18px;
+    
+}
+

@@ -1,16 +1,27 @@
-from langchain.document_loaders import TextLoader
-from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
-from langchain.text_splitter import CharacterTextSplitter, RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader, PDFMinerLoader, PyPDFDirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.embeddings import SentenceTransformerEmbeddings
+from langchain.vectorstores import Chroma
+import os
 from constants import CHROMA_SETTINGS
 
-loader = PyPDFDirectoryLoader("./docs/")
-documents = loader.load()
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=500)
-texts = text_splitter.split_documents(documents)
+persist_directory = './db'
+docs_path = "./docs"
 
-embedding_function = SentenceTransformerEmbeddings(model_name="LaMini-T5-738M")
+def main():
+    for files in os.listdir(docs_path):
+        if files.endswith(".pdf"):
+            print(files)
+            loader = PyPDFLoader(os.path.join(docs_path, files))
+    documents = loader.load()
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=0)
+    texts = text_splitter.split_documents(documents)
 
-db = Chroma.from_documents(texts, embedding_function, persist_directory="db", client_settings=CHROMA_SETTINGS)
+    embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+
+    db = Chroma.from_documents(texts, embedding_function, persist_directory="./db/", client_settings=CHROMA_SETTINGS)
+    db.persist()
+    db = None
+
+main()
 print("done")
